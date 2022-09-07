@@ -8,7 +8,7 @@ Marks were awarded for the software's ability to solve different levels of hardn
 
 ## Background
 
-There are a number of different ways to approach this problem, the most common being backtracking and constraint propagation. I chose to use Donald Knuth's Algorithm X to solve the problem. This is a very efficient algorithm that uses a technique called dancing links to solve the problem. The algorithm is described in detail in the paper [Dancing Links](http://www-cs-faculty.stanford.edu/~uno/papers/dancing-color.ps.gz) by Donald Knuth. To implement this algorithm, a sudoku is seen as an exact cover problem. 
+There are a number of different ways to approach this problem, the most common being backtracking and constraint propagation. I chose to use Donald Knuth's Algorithm X to solve the problem. This is a very efficient algorithm that uses a technique called dancing links to solve the problem. The algorithm is described in detail in the paper Dancing Links by Donald Knuth. To implement this algorithm, a sudoku is seen as an exact cover problem. 
 
 ### Exact cover problems
 
@@ -18,9 +18,10 @@ Imagine you are to to sort your cuttlery, a fork, a spoon and a knife each in a 
 Each of the cuttleries must only occupy one of the spots - No spot shall have two items at any given time. There exist a number of possible solutions to this problem.
 If we are to scale up the question to a set of 100 items and 100 spots then how are we to determine all possible configurations? This problem appears to be more complex as the number of
 constraints has dramatically increased. The exact cover approach would go about solving this as such :
-1) Create a list of all constraints that are to be satisfied - List 1
-2) Create a list of potential ways to satisfy each of the constraints - List 2
-3) Consturct a matrix, with list 1 being the column headers and list 2 populating the values of the matrix.
+>1. Create a list of all constraints that are to be satisfied - List 1
+>2. Create a list of potential ways to satisfy each of the constraints - List 2
+>3. Consturct a matrix, with list 1 being the column headers and list 2 populating the values of the matrix.
+
 _AndyG (2016) Solving Sudoku, Revisited_
 
 Using the simple problem we have constructed the following table :
@@ -70,11 +71,12 @@ While any systematic rule to choose column `c` would will yield all solutions, K
 ## Implementation
 
 The implementation of the algorithm is done in Python. We require a way to use implement both the algorithm aswell as backtracking, therefore a class is created to represent a sudoku. The class has the following attributes :
->1) `grid` : A 9x9 matrix representing the sudoku grid
+>1) `matrix` : A 9x9 matrix representing the sudoku grid
 >2) `rows` : A list of all rows in the sudoku
 >3) `columns` : A list of all columns in the sudoku
 >4) `boxes` : A list of all boxes in the sudoku
 >5) `units` : A list of all units in the sudoku
+>6) `solutions` : A list of all solutions to the sudoku
 
 The class also has the following methods :
 >1) `__init__` : The constructor for the class. Takes in a 9x9 matrix as input and creates the rows, columns, boxes and units.
@@ -87,16 +89,25 @@ The class also has the following methods :
 >8) `is_final` : Returns True if the sudoku has no more constraints to choose from, False otherwise
 >9) `remove_constraints` : Application of algorithm Step 4
 >10) `undo_remove` : Reverts the changes made by `remove_constraints`
+>11) `add_solution` :  Add the given key (row column cell combo) to solutions, and remove associated keys from matrix
+>12) `remove_solution` : Remove the given key (row column cell combo) from solutions, and restores associated keys to matrix
+>13) `apply` : Applies the solution set to initial `values`, returns the values
 
-There are also a handful of other methods used to aid in the implementation of the algorithm. In order to get to a solution we need to manipulate the object, by "moving" it generations forward (towards a solution) or backwords. Creating a copy of the object might seem like a good idea, however the deep copy function in Python is very slow. Therefore, we will use a different approach. We will create a few methods such that :
->1) `add_solution` : Adds a solution to the object (moves forward)
->2) `remove_solution` : Removes a solution from the object (moves back)
+Finally we have used two other methods to 
+
 
 
 
 ## References
-http://www-cs-faculty.stanford.edu/~uno/papers/dancing-color.ps.gz
+Knuth, D. 2000. Dancing Links. Millenial Perspectives in Computer Science, 2000, 187--214, Knuth migration 11/2004, pp 4-5.
 
-https://www.geeksforgeeks.org/exact-cover-problem-algorithm-x-set-1/
+Anon, Algorithm X in 30 lines! [Online] Available at: https://www.cs.mcgill.ca/~aassaf9/python/algorithm_x.html [Accessed 06 September 2022]. 
 
-https://gieseanw.wordpress.com/2011/06/16/solving-sudoku-revisited/#:~:text=To%20solve%20the%20problem%20we,1%27%20in%20it%20exactly%20once.
+Anon, St. Olaf College. [Online] Available at: https://www.stolaf.edu/people/hansonr/sudoku/exactcovermatrix.htm [Accessed 08 September 2022]. 
+
+Anon, 2022. Knuth's Algorithm X. Wikipedia. [Online] Available at: https://en.wikipedia.org/wiki/Knuth%27s_Algorithm_X [Accessed 06 September 2022]. 
+
+Kumar, A. 2018. Exact Cover Problem and Algorithm X | Set 1 [Online] Available from: https://www.geeksforgeeks.org/exact-cover-problem-algorithm-x-set-1/ [Accessed 07 September 2022].
+
+G, Andy. 2011. Solving Sudoku, Revisited [Online]. Andy G's Blog. Available from: https://gieseanw.wordpress.com/2011/06/16/solving-sudoku-revisited/ [Accessed 07 September 2021]
+
