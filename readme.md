@@ -93,7 +93,9 @@ The class also has the following methods :
 >12) `remove_solution` : Remove the given key (row column cell combo) from solutions, and restores associated keys to matrix
 >13) `apply` : Applies the solution set to initial `values`, returns the values
 
-Finally we have used two other methods to 
+Finally we have used two other methods to solve a sudoku
+>1) `sudoku_solver` : The main function that solves the sudoku.
+>2) `backtrack` : This method is a helper function for `sudoku_solver`. It is used to backtrack if the sudoku is unsolvable. By taking a key, it tests whether the sudoku will lead to a goal state, and if not, any changes made to the state (the sudoku object) will be reverted
 
 
 
