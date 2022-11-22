@@ -1,3 +1,4 @@
+
 ## Introduction
 
 This project was an assignemnt during my Masters course at The University of Bath on February 2022.
@@ -6,6 +7,19 @@ Course: MSc Computer Science Module: Artificial Intelligence
 The aim of the assignment is to construct a sudoku solver for 9x9 grid sudokus. The choice of algorithm was completely up to the developer.
 Marks were awarded for the software's ability to solve different levels of hardness of sudokus as well as the speed of producing solutions
 
+## Results
+
+>Your submission passed all of our tests with flying colours and within the time limit, even on the hardest sudokus.
+Extremely strong work. Well done. The difference between the very top grades is just down to time and presentation.
+
+>Readme feedback:   
+This is a strong readme that shows a through understanding of the intricacies of the algorithm used. It's always great to see a successful implementation of Algorithm X!   
+Final grade: 100
+
+
+Final grade: 100/100
+
+The project achieved a grade of 100/100
 ## Background
 
 There are a number of different ways to approach this problem, the most common being backtracking and constraint propagation. I chose to use Donald Knuth's Algorithm X to solve the problem. This is a very efficient algorithm that uses a technique called dancing links to solve the problem. The algorithm is described in detail in the paper Dancing Links by Donald Knuth. To implement this algorithm, a sudoku is seen as an exact cover problem. 
